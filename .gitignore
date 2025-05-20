@@ -1,0 +1,12 @@
+# Node / Vue-Projekt
+node_modules/
+dist/
+
+# System- und Cache-Dateien
+.DS_Store
+Thumbs.db
+.vscode/
+.android/
+AppData/
+*.log
+

@@ -1,0 +1,230 @@
+/* Allgemeines Layout */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #4286f4, #f441a5, #ffc107);
+  background-attachment: fixed;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Eingabe- & Auswahlfelder */
+.controls input,
+.controls select {
+  padding: 10px 20px;
+  width: 80%;
+  max-width: 400px;
+  font-size: 16px;
+  border-radius: 50px;
+  border: 2px solid #333;
+  background-color: #65417485;
+  margin: 1%;
+  color: #000000;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.controls input:focus,
+.controls select:focus,
+.controls input:hover,
+.controls select:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.controls input::placeholder {
+  color: #000000;
+}
+
+/* Container für Pokémon-Karten */
+#pokemon-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+/* Pokémon-Karten */
+.pokemon-card {
+  color: rgb(237, 237, 237);
+  border-radius: 70px;
+  padding: 25px;
+  width: 200px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.616);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 6px solid rgba(255, 255, 255, 0.658);
+  position: relative;
+  background-size: cover;
+  background-blend-mode: overlay;
+}
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgb(0, 0, 0);
+}
+
+.pokemon-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 20%;
+  background-color: #f8f8f896;
+  padding: 0px;
+}
+
+/* Typ-Badges */
+.type-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 5px 4px;
+  border-radius: 12px;
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: capitalize;
+  box-shadow: 0 8px 16px rgb(0, 0, 0);
+}
+
+/* Farben pro Typ (Hintergrund + Rand) */
+.type-normal    { background-color: #A8A77A; }
+.type-fire      { background-color: #EE8130; }
+.type-water     { background-color: #6390F0; }
+.type-electric  { background-color: #F7D02C; color: black; }
+.type-grass     { background-color: #7AC74C; }
+.type-ice       { background-color: #96D9D6; color: black; }
+.type-fighting  { background-color: #C22E28; }
+.type-poison    { background-color: #A33EA1; }
+.type-ground    { background-color: #E2BF65; color: black; }
+.type-flying    { background-color: #A98FF3; }
+.type-psychic   { background-color: #F95587; }
+.type-bug       { background-color: #A6B91A; }
+.type-rock      { background-color: #B6A136; }
+.type-ghost     { background-color: #735797; }
+.type-dragon    { background-color: #6F35FC; }
+.type-dark      { background-color: #705746; }
+.type-steel     { background-color: #B7B7CE; }
+.type-fairy     { background-color: #D685AD; }
+
+/* Kartenfarbe je Typ */
+.pokemon-card.type-normal    { background-color: #A8A77A; border-color: #A8A77A; }
+.pokemon-card.type-fire      { background-color: #EE8130; border-color: #F08030; }
+.pokemon-card.type-water     { background-color: #6390F0; border-color: #6890F0; }
+.pokemon-card.type-electric  { background-color: #F7D02C; border-color: #F8D030; color: black; }
+.pokemon-card.type-grass     { background-color: #7AC74C; border-color: #78C850; }
+.pokemon-card.type-ice       { background-color: #96D9D6; border-color: #98D8D8; color: black; }
+.pokemon-card.type-fighting  { background-color: #C22E28; border-color: #C03028; }
+.pokemon-card.type-poison    { background-color: #A33EA1; border-color: #A040A0; }
+.pokemon-card.type-ground    { background-color: #E2BF65; border-color: #E0C068; color: black; }
+.pokemon-card.type-flying    { background-color: #A98FF3; border-color: #A890F0; }
+.pokemon-card.type-psychic   { background-color: #F95587; border-color: #F85888; }
+.pokemon-card.type-bug       { background-color: #A6B91A; border-color: #A8B820; }
+.pokemon-card.type-rock      { background-color: #B6A136; border-color: #B8A038; }
+.pokemon-card.type-ghost     { background-color: #735797; border-color: #705898; }
+.pokemon-card.type-dragon    { background-color: #6F35FC; border-color: #7038F8; }
+.pokemon-card.type-dark      { background-color: #705746; border-color: #705848; }
+.pokemon-card.type-steel     { background-color: #B7B7CE; border-color: #B8B8D0; }
+.pokemon-card.type-fairy     { background-color: #D685AD; border-color: #EE99AC; }
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: linear-gradient(to bottom, #4286f4, #f441a5, #ffc107);
+  padding: 50px;
+  border-radius: 50px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 1px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  
+}
+
+.pokemon-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+.modal-image {
+  width: 300px;
+  height: auto;
+  border-radius: 100px;
+  background-color: #e4ff00ab;
+  padding: 50px;
+  margin-bottom: 27px;
+  box-shadow: 0 4px 120px rgba(184, 5, 5, 0.419);
+}
+
+.modal-info p {
+  margin: 8px 1;
+  font-size: 25px;
+
+}
+
+/* Lade-Button */
+.load-button {
+  margin: 15px auto;
+  padding: 0px 0px;
+  font-size: 10px;
+  font-weight: bold;
+  color: white;
+  background: radial-gradient(circle at top left, #ff0000, #cc0000);
+  border: 5px solid #222;
+  border-radius: 150px;
+  cursor: pointer;
+  transition: transform 0.7s ease, box-shadow 0.3s ease;
+  transform: rotate(3.15rad);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-shadow: 1px 1px 2px black;
+}
+
+.load-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  background: radial-gradient(circle at top left, #ff3333, #aa0000);
+}
+
+/* Details im Modal nebeneinander */
+.pokemon-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.pokemon-details-row p {
+  margin: 0;
+  min-width: 150px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .controls input,
+  .controls select {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .modal-content {
+    padding: 20px;
+    border-radius: 30px;
+  }
+
+  .modal-image {
+    width: 100%;
+    padding: 20px;
+  }
+}

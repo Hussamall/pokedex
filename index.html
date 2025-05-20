@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pokémon</title>
+  <!-- Stylesheet einbinden -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Vue 3 über CDN -->
+  <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+
+  <div id="app">
+    <!-- Logo -->
+    <img 
+      src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" 
+      alt="Pokémon Logo" 
+      width="500" 
+      height="200"
+    />
+
+    <!-- Such-, Typ- und Sortier-Optionen -->
+    <div class="controls">
+      <input type="text" v-model="search" placeholder="Pokémon suche🔍" />
+
+      <!-- Filter nach Typ -->
+      <select v-model="selectedType">
+        <option value="">Alle Typen</option>
+        <option v-for="type in availableTypes" :key="type" :value="type">
+          {{ type }}
+        </option>
+      </select>
+
+      <!-- Sortierreihenfolge -->
+      <select v-model="sortOrder">
+        <option value="asc">⬆ A–Z</option>
+        <option value="desc">⬇ Z–A</option>
+      </select>
+    </div>
+
+    <!-- Container für Pokémon-Karten -->
+    <div id="pokemon-container">
+      <div
+        class="pokemon-card"
+        v-for="pokemon in filteredPokemon"
+        :key="pokemon.name"
+        :class="'type-' + pokemon.types[0]"
+        @click="showDetails(pokemon)"
+      >
+        <img :src="pokemon.image" :alt="pokemon.name" />
+        <h3>{{ pokemon.name }}</h3>
+        <div class="type-badges">
+          <span
+            class="type-badge"
+            v-for="type in pokemon.types"
+            :key="type"
+            :class="'type-' + type.toLowerCase()"
+          >
+            {{ type }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal-Ansicht -->
+    <div v-if="selectedPokemon" class="modal" @click.self="selectedPokemon = null">
+      <div class="modal-content">
+        <h2 class="pokemon-name">{{ selectedPokemon.name }}</h2>
+        <img
+          class="modal-image"
+          :src="selectedPokemon.sprites.other['official-artwork'].front_default"
+          :alt="selectedPokemon.name"
+        />
+        <div class="modal-info">
+          <p><strong>Type : </strong>
+            <span
+              v-for="type in selectedPokemon.types"
+              :key="type.type.name"
+              :class="['type-badge', 'type-' + type.type.name.toLowerCase()]"
+            >
+              {{ type.type.name }}
+            </span>
+          </p>
+          <div class="pokemon-details-row">
+        <p><strong>Size:</strong> {{ selectedPokemon.height / 10 }} m</p>
+        <p><strong>Weight:</strong> {{ selectedPokemon.weight / 10 }} kg</p>
+        <p><strong>Power:</strong> {{ selectedPokemon.stats.find(s => s.stat.name === 'attack')?.base_stat }} hp</p>
+        <p><strong>Pokémon-Nr.:</strong> {{ selectedPokemon.id }}</p>
+        </div>
+        </div>
+        </div>
+        </div>
+
+      <!-- Mehr laden Button -->
+    <div>
+      <button @click="loadMorePokemon" class="load-button">
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/5/53/Poké_Ball_icon.svg" 
+          alt="Pokéball" 
+          style="width: 250px; vertical-align: middle; margin-right: 0px;"
+        />
+      </button>
+    </div>
+  </div>
+
+  <!-- App-Script -->
+  <script src="app.js"></script>
+
+</body>
+</html>
