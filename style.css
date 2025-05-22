@@ -23,6 +23,7 @@ body {
   outline: none;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-transform: capitalize;
 }
 
 .controls input:focus,
@@ -57,6 +58,7 @@ body {
   position: relative;
   background-size: cover;
   background-blend-mode: overlay;
+  text-transform: capitalize;
 }
 
 .pokemon-card:hover {
